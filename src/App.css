@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* list group */
+.list-group-item.active{
+   background-color: #e0f3ff !important; /* Light blue or your desired color */
+  color: #000 !important;
+  border-color: #b6e0fe !important;
+}
