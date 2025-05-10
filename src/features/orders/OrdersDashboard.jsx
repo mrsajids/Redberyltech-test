@@ -34,10 +34,23 @@ const OrdersDashboard = () => {
   });
 
   const [filteredOrders, setFilteredOrders] = useState(orders);
-
+  const [sortBy, setSortBy] = useState("id"); // "id" or "date"
+  const [sortAsc, setSortAsc] = useState(true);
+  
   const handleFilterChange = (key, value) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
+
+
+  const sortedOrders = [...filteredOrders].sort((a, b) => {
+    const aVal = sortBy === "date" ? new Date(a.date) : a.id;
+    const bVal = sortBy === "date" ? new Date(b.date) : b.id;
+  
+    if (aVal < bVal) return sortAsc ? -1 : 1;
+    if (aVal > bVal) return sortAsc ? 1 : -1;
+    return 0;
+  });
+  
 
   const clearFilters = () => {
     setFilters({
@@ -80,7 +93,7 @@ const OrdersDashboard = () => {
     // Optional: Map paymentStatus if it's derived from other fields
     if (filters.paymentStatus) {
       filtered = filtered.filter(
-        (o) => o.status === filters.paymentStatus // Adjust logic as needed
+        (o) => o.status === filters.paymentStatus 
       );
     }
     setSelectedOrder(filtered[0] || null);
@@ -100,7 +113,7 @@ const OrdersDashboard = () => {
   console.log(filteredOrders);
 
   return (
-    <Container fluid className="bg-light min-vh-100 p-4 pt-3">
+    <Container fluid className="min-vh-100 p-4 pt-3">
       <Header />
       <Filters
         filters={filters}
@@ -116,10 +129,13 @@ const OrdersDashboard = () => {
       <Row>
         <Col md={3}>
           <OrderList
-            orders={filteredOrders} // ✅ Use the filtered list
+            orders={sortedOrders}
             selectedOrderId={selectedOrder?.id}
             onSelect={(order) => setSelectedOrder(order)}
             onRefresh={() => clearFilters()}
+            setSortAsc={setSortAsc}
+            setSortBy={setSortBy}
+            sortAsc={sortAsc}
           />
         </Col>
 
@@ -134,18 +150,6 @@ const OrdersDashboard = () => {
                 </Tab>
                 <Tab eventKey="preview" title="Order Preview">
                   <OrderPreview order={selectedOrder} />
-                </Tab>
-                <Tab eventKey="company" title="Company Details">
-                  to be added soon
-                </Tab>
-                <Tab eventKey="docs" title="Documents">
-                  to be added soon
-                </Tab>
-                <Tab eventKey="comm" title="Communication history">
-                  to be added soon
-                </Tab>
-                <Tab eventKey="rep" title="Account Rep">
-                  to be added soon
                 </Tab>
                 <Tab eventKey="invoice" title="Invoice">
                   <Invoice invoice={invoice} />

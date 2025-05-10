@@ -1,5 +1,5 @@
-import React from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import React from "react";
+import { Row, Col, Button } from "react-bootstrap";
 
 const Header = () => (
   <Row className="mb-3">
@@ -8,8 +8,12 @@ const Header = () => (
       <p>Manage all your orders here.</p>
     </Col>
     <Col className="text-end">
-      <Button variant="primary" className="me-2">+ Create Order</Button>
-      <Button variant="outline-primary">Export CSV</Button>
+      <Button variant="outline-primary" size="sm" className="me-2">
+        + Create Order
+      </Button>
+      <Button variant="primary" size="sm">
+        Export CSV
+      </Button>
     </Col>
   </Row>
 );

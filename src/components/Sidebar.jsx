@@ -1,24 +1,26 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import sidebarLinks from "../data/sidebarLinks";
+import "../assets/css/sidebar.css";
 
 const Sidebar = () => {
   const location = useLocation();
 
   return (
-    <div className="bg-white border-end vh-100 p-1" style={{ minWidth: "50px" }}>
-      <ul className="nav flex-column">
+    <div className="sidebar-fixed">
+      <ul className="nav flex-column align-items-center">
         {sidebarLinks.map(({ to, label, icon: Icon }) => {
           const isActive = location.pathname.startsWith(to);
           return (
-            <li key={to} className="nav-item mb-2">
+            <li key={to} className="nav-item mb-3 text-center">
               <Link
                 to={to}
-                className={`nav-link text-center ${isActive ? "text-primary fw-bold" : "text-dark"}`}
+                className={`nav-link p-0 side-bar-tab ${
+                  isActive ? "text-primary fw-bold" : "text-dark"
+                }`}
               >
-                <Icon className="me-2" />
-                <br />
-                {label}
+                <Icon size={20} className="mb-1" />
+                <div className="d-none d-md-block">{label}</div>
               </Link>
             </li>
           );

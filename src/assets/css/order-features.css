@@ -1,0 +1,37 @@
+/* order list   */
+.orderlist-select {
+  max-width: 140px;
+}
+
+.orderlist-scroll {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.orderlist-badge {
+  font-size: 0.75rem;
+}
+
+.rotate-0 svg {
+  transform: rotate(0deg);
+  transition: transform 0.2s ease;
+}
+
+.rotate-180 svg {
+  transform: rotate(180deg);
+  transition: transform 0.2s ease;
+}
+
+/* order detail */
+.order-avatar {
+  width: 36px;
+  height: 36px;
+  background-color: #0d6efd;
+  color: white;
+  font-weight: bold;
+  font-size: 0.8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

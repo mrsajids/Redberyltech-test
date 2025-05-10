@@ -2,33 +2,57 @@ import React from "react";
 import { ListGroup, Badge, Form, Button } from "react-bootstrap";
 import { FaSortAmountDownAlt } from "react-icons/fa";
 import { IoIosRefresh } from "react-icons/io";
+import "../../../assets/css/order-features.css"; 
 
-const OrderList = ({ orders, selectedOrderId, onSelect, onRefresh }) => {
+const OrderList = ({
+  orders,
+  selectedOrderId,
+  onSelect,
+  onRefresh,
+  setSortAsc,
+  setSortBy,
+  sortAsc,
+}) => {
   return (
     <>
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h5 className="mb-0">
+        <h6 className="mb-0">
           Orders{" "}
           <span className="badge bg-primary rounded-pill">{orders.length}</span>
-        </h5>
+        </h6>
         <div className="d-flex">
-          <Form.Select size="sm" style={{ maxWidth: "140px" }}>
+          <Form.Select
+            size="sm"
+            className="orderlist-select"
+            onChange={(e) =>
+              setSortBy(e.target.value === "Date" ? "date" : "id")
+            }
+          >
             <option>Order Number</option>
             <option>Date</option>
-          </Form.Select>{" "}
-          <Button variant="primary ms-1" size="sm">
+          </Form.Select>
+
+          <Button
+            variant="primary"
+            size="sm"
+            className={`ms-1 ${sortAsc ? "rotate-0" : "rotate-180"}`}
+            onClick={() => setSortAsc(!sortAsc)}
+          >
             <FaSortAmountDownAlt />
           </Button>
+
           <Button
-            variant="outline-secondary px-1 ms-1"
+            variant="outline-secondary"
             size="sm"
-            onClick={() => onRefresh()}
+            className="ms-1 px-1"
+            onClick={onRefresh}
           >
-            <IoIosRefresh size={20} />
+            <IoIosRefresh size={18} />
           </Button>
         </div>
       </div>
-      <div style={{ maxHeight: "70vh", overflowY: "auto" }}>
+
+      <div className="orderlist-scroll">
         <ListGroup>
           {orders.map((order) => (
             <ListGroup.Item
@@ -39,9 +63,9 @@ const OrderList = ({ orders, selectedOrderId, onSelect, onRefresh }) => {
               onClick={() => onSelect(order)}
             >
               <div className="w-100">
-                <div className="fw-bold">ORDER-ID {order.id}</div>
-                <div className="text-muted">{order.name}</div>
-                <div className="small text-muted">
+                <div className="fw-bold small">ORDER-ID {order.id}</div>
+                <div className="text-muted small">{order.name}</div>
+                <div className="text-muted small">
                   Order Type: {order.type}
                   <br />
                   State: {order.state}
@@ -52,8 +76,7 @@ const OrderList = ({ orders, selectedOrderId, onSelect, onRefresh }) => {
               <Badge
                 bg="warning"
                 text="dark"
-                className="align-self-end mt-2"
-                style={{ fontSize: "0.75rem" }}
+                className="align-self-end mt-2 orderlist-badge"
               >
                 {order.status}
               </Badge>

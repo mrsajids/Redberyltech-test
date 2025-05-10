@@ -1,5 +1,23 @@
-.App {
-  text-align: center;
+
+
+/* Apply to html and body */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+    background-color: rgba(128, 128, 128, 0.582);
+  overflow-x: hidden; /* Prevent unwanted horizontal scroll */
+}
+
+/* Ensure root and app containers take full height */
+#root, .App {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+*{
+    font-size: 0.85rem;
 }
 
 .App-logo {
@@ -43,4 +61,11 @@
    background-color: #e0f3ff !important; /* Light blue or your desired color */
   color: #000 !important;
   border-color: #b6e0fe !important;
+}
+
+.other-components{
+  height: 85vh;
+  padding: 10px;
+  overflow-y: auto;
+  margin-bottom: 20px;
 }

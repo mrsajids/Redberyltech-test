@@ -1,17 +1,31 @@
 import React from "react";
 import { Card, Button, Row, Col, Accordion, Table } from "react-bootstrap";
 import { FaDownload } from "react-icons/fa";
+import html2pdf from "html2pdf.js";
 
 const OrderPreview = ({ order }) => {
+const downloadPDF = () => {
+  const element = document.getElementById("invoice-preview");
+  const opt = {
+    margin: 0.3,
+    filename: 'invoice.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+  };
+
+  html2pdf().set(opt).from(element).save();
+};
+
   return (
     <>
-      <Card className="border-light shadow-sm m-1">
+      <Card className="border-light shadow-sm m-1" id="invoice-preview">
         <Card.Header className="bg-primary-subtle text-primary d-flex justify-content-between align-items-center">
           <div>Order preview</div>
         </Card.Header>
         <Card.Body>
           <div className="text-end">
-            <Button variant="primary" size="sm">
+            <Button variant="primary" size="sm" onClick={downloadPDF}>
               <FaDownload className="me-2" />
               Download as a PDF
             </Button>

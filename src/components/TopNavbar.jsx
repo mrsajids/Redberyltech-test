@@ -1,9 +1,11 @@
 import React from 'react';
-import { Navbar, Container, Nav, Button } from 'react-bootstrap';
-import logo from "../assets/images/logo.png"
+import { Navbar, Container, Nav } from 'react-bootstrap';
+import logo from "../assets/images/logo.jpg";
+import "../assets/css/navbar.css"; 
+
 const TopNavbar = () => {
   return (
-    <Navbar bg="light" expand="lg" className="px-4 shadow-sm">
+    <Navbar bg="white" expand="lg" className="px-4 shadow-sm position-sticky top-0">
       <Container fluid>
         <Navbar.Brand href="#home">
           <img
@@ -15,10 +17,10 @@ const TopNavbar = () => {
         </Navbar.Brand>
 
         <Nav className="ms-auto d-flex align-items-center">
-          <span className="me-3 text-muted">Welcome, <strong>Santosh Narate</strong></span>
-          <div className="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center" style={{ width: 36, height: 36 }}>
-            SN
-          </div>
+          <span className="me-3 text-muted">
+            Welcome, <strong>Santosh Narate</strong>
+          </span>
+          <div className="topnav-avatar">SN</div>
         </Nav>
       </Container>
     </Navbar>
