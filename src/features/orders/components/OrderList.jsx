@@ -3,7 +3,7 @@ import { ListGroup, Badge, Form, Button } from "react-bootstrap";
 import { FaSortAmountDownAlt } from "react-icons/fa";
 import { IoIosRefresh } from "react-icons/io";
 
-const OrderList = ({ orders, selectedOrderId, onSelect }) => {
+const OrderList = ({ orders, selectedOrderId, onSelect, onRefresh }) => {
   return (
     <>
       <div className="d-flex justify-content-between align-items-center mb-3">
@@ -19,7 +19,11 @@ const OrderList = ({ orders, selectedOrderId, onSelect }) => {
           <Button variant="primary ms-1" size="sm">
             <FaSortAmountDownAlt />
           </Button>
-          <Button variant="outline-secondary px-1 ms-1" size="sm">
+          <Button
+            variant="outline-secondary px-1 ms-1"
+            size="sm"
+            onClick={() => onRefresh()}
+          >
             <IoIosRefresh size={20} />
           </Button>
         </div>

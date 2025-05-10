@@ -7,9 +7,18 @@ import { MdOutlineEdit } from "react-icons/md";
 const OrderDetail = ({ order }) => {
   if (!order)
     return <div className="p-4">Select an order to view details.</div>;
+  const printOrderDetail = () => {
+    const printContents = document.getElementById("order-detail").innerHTML;
+    const originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+    window.location.reload(); // Optional: Reload to restore React state
+  };
 
   return (
-    <div className="p-3">
+    <div className="p-3" id="order-detail">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div>
           <h5 className="mb-0">
@@ -23,7 +32,7 @@ const OrderDetail = ({ order }) => {
             <MdOutlineEdit className="me-1" size={20} />
             Update status
           </Button>
-          <Button variant="outline-secondary">
+          <Button variant="outline-secondary" onClick={printOrderDetail}>
             <LuPrinter className="me-1" size={20} />
             Print
           </Button>
