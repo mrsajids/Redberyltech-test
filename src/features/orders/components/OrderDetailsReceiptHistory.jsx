@@ -12,7 +12,7 @@ const OrderDetailsReceiptHistory = ({ order }) => {
             Receipt
           </Card.Header>
           <Card.Body>
-            {order.receipt?.map((item, idx) => (
+            {order?.receipt?.map((item, idx) => (
               <div
                 key={idx}
                 className="d-flex justify-content-between align-items-start mb-3"

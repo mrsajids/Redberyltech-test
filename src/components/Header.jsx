@@ -1,7 +1,8 @@
 import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
+import OrdersExport from "./OrdersExport";
 
-const Header = () => (
+const Header = ({ filteredOrders }) => (
   <Row className="mb-3">
     <Col>
       <h3>Orders</h3>
@@ -11,9 +12,8 @@ const Header = () => (
       <Button variant="outline-primary" size="sm" className="me-2">
         + Create Order
       </Button>
-      <Button variant="primary" size="sm">
-        Export CSV
-      </Button>
+
+      <OrdersExport filteredOrders={filteredOrders} />
     </Col>
   </Row>
 );
